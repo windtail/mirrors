@@ -1,0 +1,20 @@
+debian-amd64:
+  image: apt-mirror:latest
+  environment:
+    - UPSTREAM=http://mirrors.aliyun.com/debian
+    - RELEASE=stretch
+    - ARCH=amd64
+  volumes:
+    - /mirrors/debian-x86_64:/apt-mirror
+debian-armhf:
+  image: apt-mirror:latest
+  environment:
+    - UPSTREAM=http://mirrors.tuna.tsinghua.edu.cn/debian
+    - RELEASE=stretch
+    - ARCH=armhf
+  volumes:
+    - /mirrors/debian-armhf:/apt-mirror
+pypi:
+  image: pypi:latest
+  volumes:
+    - /mirrors/pypi:/pypi
