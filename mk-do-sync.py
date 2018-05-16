@@ -14,7 +14,7 @@ def prefix_sequence(prefix, seq):
 
 
 def specs_to_cmdline_args(name, specs):
-    yield from ("docker", "run", "--name", name)
+    yield from ("docker", "run", "--rm", "--name", name)
     yield from prefix_sequence("-e", specs.get("environment", ()))
     yield from prefix_sequence("-v", specs.get("volumes", ()))
     yield specs["image"]
