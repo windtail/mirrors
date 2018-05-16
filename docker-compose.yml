@@ -18,3 +18,7 @@ pypi:
   image: pypi:latest
   volumes:
     - /mirrors/pypi:/pypi
+elpa:
+  image: elpa:latest
+  volumes:
+    - /mirrors/elpa:/elpa
