@@ -18,8 +18,9 @@ RUN sed -i "s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/" /etc/apt/sources.lis
 
 COPY setup.sh /setup.sh
 COPY sync.sh /sync.sh
+COPY sync-forever.sh /sync-forever.sh
 
 VOLUME ["/apt-mirror"]
 
 ENTRYPOINT ["/bin/bash", "/setup.sh"]
-CMD ["/bin/bash", "/sync.sh"]
+CMD ["/bin/bash", "/sync-forever.sh"]

@@ -10,8 +10,9 @@ RUN mkdir -p /pypi
 
 COPY setup.sh /setup.sh
 COPY sync.sh /sync.sh
+COPY sync-forever.sh /sync-forever.sh
 
 VOLUME ["/pypi"]
 
 ENTRYPOINT ["/bin/bash", "/setup.sh"]
-CMD ["/bin/bash", "/sync.sh"]
+CMD ["/bin/bash", "/sync-forever.sh"]

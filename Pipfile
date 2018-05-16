@@ -1,0 +1,19 @@
+[[source]]
+url = "http://mirrors.aliyun.com/pypi/simple"
+verify_ssl = false
+name = "pypi"
+
+[dev-packages]
+jedi = "*"
+rope = "*"
+"autopep8" = "*"
+yapf = "*"
+"flake8" = "*"
+jupyter = "*"
+
+[packages]
+click = "*"
+pyyaml = "*"
+
+[requires]
+python_version = "3.5"
