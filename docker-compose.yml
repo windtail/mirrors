@@ -1,4 +1,4 @@
-version '3'
+version: '3'
 services:
   debian-amd64:
     build: ./apt-mirror
