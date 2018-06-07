@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 bandersnatch mirror 2> /dev/null  # generate default config file
 

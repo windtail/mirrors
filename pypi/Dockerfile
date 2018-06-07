@@ -14,5 +14,5 @@ COPY sync-forever.sh /sync-forever.sh
 
 VOLUME ["/pypi"]
 
-ENTRYPOINT ["/bin/bash", "/setup.sh"]
-CMD ["/bin/bash", "/sync-forever.sh"]
+ENTRYPOINT ["/bin/sh", "/setup.sh"]
+CMD ["/bin/sh", "/sync-forever.sh"]
