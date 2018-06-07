@@ -1,4 +1,4 @@
-From python:3
+From python:3-alpine3.7
 
 MAINTAINER ljj ljj@knd.com.cn
 
