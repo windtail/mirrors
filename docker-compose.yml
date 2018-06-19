@@ -3,6 +3,7 @@ services:
   debian-amd64:
     build: ./apt-mirror
     image: apt-mirror:latest
+    restart: always
     environment:
       - UPSTREAM=http://mirrors.aliyun.com/debian
       - RELEASE=stretch
@@ -11,6 +12,7 @@ services:
       - /mirrors/debian-x86_64:/apt-mirror
   debian-armhf:
     image: apt-mirror:latest
+    restart: always
     environment:
       - UPSTREAM=http://mirrors.tuna.tsinghua.edu.cn/debian
       - RELEASE=stretch
@@ -20,10 +22,12 @@ services:
   pypi:
     build: ./pypi
     image: pypi:latest
+    restart: always
     volumes:
       - /mirrors/pypi:/pypi
   elpa:
     build: ./elpa
     image: elpa:latest
+    restart: always
     volumes:
       - /mirrors/elpa:/elpa
