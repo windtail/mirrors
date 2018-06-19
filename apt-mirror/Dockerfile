@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV UPSTREAM 'http://mirrors.tuna.tsinghua.edu.cn/debian'
 ENV RELEASE stretch
 ENV ARCH amd64
+ENV REPOES 'main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer'
 ENV RESYNC_PERIOD 12h
 
 RUN sed -i "s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/" /etc/apt/sources.list ; \
