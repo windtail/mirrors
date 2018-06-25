@@ -19,6 +19,17 @@ services:
       - ARCH=armhf
     volumes:
       - /mirrors/debian-armhf:/apt-mirror
+  debian-docker:
+    build: ./apt-docker
+    image: apt-docker:latest
+    restart: always
+    environment:
+      - UPSTREAM=http://download.docker.com/linux/debian
+      - RELEASE=stretch
+      - ARCH=amd64
+      - REPOES=stable
+    volumes:
+      - /mirrors/debian-docker:/apt-mirror
   pypi:
     build: ./pypi
     image: pypi:latest
@@ -31,3 +42,11 @@ services:
     restart: always
     volumes:
       - /mirrors/elpa:/elpa
+  www:
+    build: ./www
+    image: mirror-www:latest
+    restart: always
+    volumes:
+      - /mirrors:/mirrors
+    ports:
+      - 8080:80
