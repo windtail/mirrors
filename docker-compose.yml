@@ -1,52 +1,10 @@
 version: '3'
 services:
-  debian-amd64:
-    build: ./apt-mirror
-    image: apt-mirror:latest
-    restart: always
-    environment:
-      - UPSTREAM=http://mirrors.aliyun.com/debian
-      - RELEASE=stretch
-      - ARCH=amd64
-    volumes:
-      - /mirrors/debian-x86_64:/apt-mirror
-  debian-armhf:
-    image: apt-mirror:latest
-    restart: always
-    environment:
-      - UPSTREAM=http://mirrors.tuna.tsinghua.edu.cn/debian
-      - RELEASE=stretch
-      - ARCH=armhf
-    volumes:
-      - /mirrors/debian-armhf:/apt-mirror
-  debian-docker:
-    build: ./apt-docker
-    image: apt-docker:latest
-    restart: always
-    environment:
-      - UPSTREAM=http://download.docker.com/linux/debian
-      - RELEASE=stretch
-      - ARCH=amd64
-      - REPOES=stable
-    volumes:
-      - /mirrors/debian-docker:/apt-mirror
-  pypi:
-    build: ./pypi
-    image: pypi:latest
-    restart: always
-    volumes:
-      - /mirrors/pypi:/pypi
-  elpa:
-    build: ./elpa
-    image: elpa:latest
-    restart: always
-    volumes:
-      - /mirrors/elpa:/elpa
   www:
-    build: ./www
-    image: mirror-www:latest
+    image: nginx:alpine
     restart: always
     volumes:
       - /mirrors:/mirrors
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - 8080:80

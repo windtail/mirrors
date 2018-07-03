@@ -1,27 +1,29 @@
 From debian:stretch
 
-MAINTAINER ljj ljj@knd.com.cn
+MAINTAINER "ljj <ljj@knd.com.cn>"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV UPSTREAM 'http://mirrors.tuna.tsinghua.edu.cn/debian'
-ENV RELEASE stretch
-ENV ARCH amd64
-ENV REPOES 'main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer'
-ENV RESYNC_PERIOD 12h
 
-RUN sed -i "s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/" /etc/apt/sources.list ; \
-    apt-get clean ; \
+RUN set -e ; \
+    sed -i s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/ /etc/apt/sources.list ; \
     apt-get update ; \
-    apt-get install --no-install-recommends -y apt-mirror ; \
-    apt-get autoclean ; \
+    apt-get install -y --no-install-recommends \
+            apt-transport-https \
+            ca-certificates \
+            gnupg2 \
+            software-properties-common \
+            perl \
+            apt-mirror ; \
+    apt-get clean ; \
     rm -rf /var/lib/apt/lists/* ; \
-    mkdir -p /apt-mirror
+    mkdir -p /mirror ; \
+    mkdir -p /keys
 
-COPY setup.sh /setup.sh
-COPY sync.sh /sync.sh
-COPY sync-forever.sh /sync-forever.sh
+COPY entrypoint.sh /entrypoint.sh
 
-VOLUME ["/apt-mirror"]
+VOLUME ["/mirror"]
+VOLUME ["/keys"]
 
-ENTRYPOINT ["/bin/bash", "/setup.sh"]
-CMD ["/bin/bash", "/sync-forever.sh"]
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+
+CMD ["/usr/bin/apt-mirror"]
