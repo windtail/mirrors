@@ -21,7 +21,6 @@ services:
       - DEBLINE=deb-amd64 http://download.docker.com/linux/debian stretch stable
     volumes:
       - /mirrors/debian-docker:/mirror
-      - ./gpgs/docker-gpg:/keys/gpg:ro
   debian-nginx:
     image: apt-mirror:latest
     environment:
