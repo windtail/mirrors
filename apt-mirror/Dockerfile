@@ -1,29 +1,21 @@
-From debian:stretch
+From alpine:latest
 
 MAINTAINER "ljj <ljj@knd.com.cn>"
 
-ENV DEBIAN_FRONTEND noninteractive
+ARG ALPINE_MIRROR=mirrors.aliyun.com
 
 RUN set -e ; \
-    sed -i s/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/ /etc/apt/sources.list ; \
-    apt-get update ; \
-    apt-get install -y --no-install-recommends \
-            apt-transport-https \
-            ca-certificates \
-            gnupg2 \
-            software-properties-common \
-            perl \
-            apt-mirror ; \
-    apt-get clean ; \
-    rm -rf /var/lib/apt/lists/* ; \
-    mkdir -p /mirror ; \
-    mkdir -p /keys
+    sed -i s/dl-cdn.alpinelinux.org/$ALPINE_MIRROR/ /etc/apk/repositories ; \
+    apk update ; \
+    apk add --no-cache perl wget ; \
+    wget -q https://raw.githubusercontent.com/apt-mirror/apt-mirror/master/apt-mirror -O /usr/bin/apt-mirror ; \
+    chmod a+x /usr/bin/apt-mirror ; \
+    mkdir -p /mirror
 
 COPY entrypoint.sh /entrypoint.sh
 
 VOLUME ["/mirror"]
-VOLUME ["/keys"]
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 
-CMD ["/usr/bin/apt-mirror"]
+CMD ["/usr/bin/apt-mirror", "/mirror/mirror.list"]
