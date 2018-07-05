@@ -40,4 +40,4 @@ services:
       - /mirrors/alpine:/mirror
     environment:
       - UPSTREAM=rsync://rsync.alpinelinux.org/alpine/
-      - OPTIONS=--archive --update --hard-links --delete --delete-after --delay-updates --timeout=600 --exclude=v2.*
+      - OPTIONS=--archive --update --hard-links --delete --delete-after --delay-updates --timeout=600 --exclude=v2.* --exclude=edge --exclude=v3.[0-6] --exclude=aarch64/ --exclude=ppc64le/ --exclude=s390x/ --exclude=x86/ --verbose
