@@ -4,13 +4,15 @@ services:
     build: ./apt-mirror
     image: apt-mirror:latest
     environment:
-      - DEBLINE=deb-amd64 http://mirrors.aliyun.com/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
+      - DEBLINE1=deb-amd64 http://mirrors.aliyun.com/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
+      - DEBLINE2=deb-amd64 http://mirrors.aliyun.com/debian-security stretch main contrib non-free
     volumes:
       - /mirrors/debian-x86_64:/mirror
   debian-armhf:
     image: apt-mirror:latest
     environment:
-      - DEBLINE=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
+      - DEBLINE1=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
+      - DEBLINE2=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian-security stretch main contrib non-free
     volumes:
       - /mirrors/debian-armhf:/mirror
   debian-docker:
