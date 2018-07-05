@@ -22,6 +22,26 @@ services:
     volumes:
       - /mirrors/debian-docker:/mirror
       - ./gpgs/docker-gpg:/keys/gpg:ro
+  debian-nginx:
+    image: apt-mirror:latest
+    environment:
+      - DEBLINE1=deb-amd64 http://nginx.org/packages/debian stretch nginx
+      - DEBLINE2=deb-src-amd64 http://nginx.org/packages/debian stretch nginx
+    volumes:
+      - /mirrors/debian-nginx:/mirror
+  debian-nginx-unit:
+    image: apt-mirror:latest
+    environment:
+      - DEBLINE=deb-amd64 http://packages.nginx.org/unit/debian stretch unit
+    volumes:
+      - /mirrors/debian-nginx-unit:/mirror
+  debian-nodejs:
+    image: apt-mirror:latest
+    environment:
+      - DEBLINE=deb-amd64 https://deb.nodesource.com/node_8.x stretch main
+      - DEBLINE=deb-amd64 https://deb.nodesource.com/node_10.x stretch main
+    volumes:
+      - /mirrors/debian-nodejs:/mirror
   pypi:
     build: ./pypi
     image: pypi:latest
