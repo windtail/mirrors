@@ -5,14 +5,20 @@ services:
     image: apt-mirror:latest
     environment:
       - DEBLINE1=deb-amd64 http://mirrors.aliyun.com/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
-      - DEBLINE2=deb-amd64 http://mirrors.aliyun.com/debian-security stretch main contrib non-free
+      - DEBLINE2=deb-amd64 http://mirrors.aliyun.com/debian stretch-updates main contrib non-free
+      - DEBLINE3=deb-amd64 http://mirrors.aliyun.com/debian stretch-proposed-updates main contrib non-free
+      - DEBLINE4=deb-amd64 http://mirrors.aliyun.com/debian stretch-backports main contrib non-free
+      - DEBLINE5=deb-amd64 http://mirrors.aliyun.com/debian-security stretch/updates main contrib non-free
     volumes:
       - /mirrors/debian-x86_64:/mirror
   debian-armhf:
     image: apt-mirror:latest
     environment:
       - DEBLINE1=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
-      - DEBLINE2=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian-security stretch main contrib non-free
+      - DEBLINE2=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch-updates main contrib non-free
+      - DEBLINE3=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch-proposed-updates main contrib non-free
+      - DEBLINE4=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian stretch-backports main contrib non-free
+      - DEBLINE5=deb-armhf http://mirrors.tuna.tsinghua.edu.cn/debian-security stretch main contrib non-free
     volumes:
       - /mirrors/debian-armhf:/mirror
   debian-docker:
@@ -37,8 +43,8 @@ services:
   debian-nodejs:
     image: apt-mirror:latest
     environment:
-      - DEBLINE=deb-amd64 https://deb.nodesource.com/node_8.x stretch main
-      - DEBLINE=deb-amd64 https://deb.nodesource.com/node_10.x stretch main
+      - DEBLINE1=deb-amd64 https://deb.nodesource.com/node_8.x stretch main
+      - DEBLINE2=deb-amd64 https://deb.nodesource.com/node_10.x stretch main
     volumes:
       - /mirrors/debian-nodejs:/mirror
   pypi:
