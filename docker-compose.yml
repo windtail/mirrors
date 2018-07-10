@@ -6,5 +6,6 @@ services:
     volumes:
       - /mirrors:/mirrors
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./apt-keys:/usr/share/nginx/html/apt-keys
     ports:
       - 8080:80
