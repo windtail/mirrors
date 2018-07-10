@@ -11,6 +11,16 @@ services:
       - DEBLINE5=deb-amd64 http://mirrors.aliyun.com/debian-security stretch/updates main contrib non-free
     volumes:
       - /mirrors/debian-x86_64:/mirror
+  debian-i386:
+    image: apt-mirror:latest
+    environment:
+      - DEBLINE1=deb-i386 http://mirrors.aliyun.com/debian stretch main contrib non-free main/debian-installer contrib/debian-installer non-free/debian-installer
+      - DEBLINE2=deb-i386 http://mirrors.aliyun.com/debian stretch-updates main contrib non-free
+      - DEBLINE3=deb-i386 http://mirrors.aliyun.com/debian stretch-proposed-updates main contrib non-free
+      - DEBLINE4=deb-i386 http://mirrors.aliyun.com/debian stretch-backports main contrib non-free
+      - DEBLINE5=deb-i386 http://mirrors.aliyun.com/debian-security stretch/updates main contrib non-free
+    volumes:
+      - /mirrors/debian-x86:/mirror
   debian-armhf:
     image: apt-mirror:latest
     environment:
